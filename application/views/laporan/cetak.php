@@ -39,7 +39,7 @@
                 <?php 
                     $bulan = array('1'=>'Januari','2'=>'Februari','3'=>'Maret','4'=>'April','5'=>'May','6'=>'Juni','7'=>'Juli','8'=>'Agustus','9'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember');
                 ?>
-                <b>Laporan Periode <?php echo $bulan[$periode['bulan']].'-'.$periode['yTahun'] ?></b><br><hr>
+                <b>Laporan Penjadwalan Produksi Periode <?php echo $bulan[$periode['bulan']].'-'.$periode['yTahun'] ?></b><br><hr>
                 <i class="ace-icon fa fa-angle-double-right"></i> <b>Bobot</b><hr>
                 <table style="page-break-inside:avoid;width: 100%; padding: 0px; border-collapse: collapse;" border="1" width="100%">
                   <thead>
