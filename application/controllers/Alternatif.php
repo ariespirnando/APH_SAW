@@ -112,7 +112,7 @@ class Alternatif extends CI_Controller {
 		$id_for = $this->input->post('insertALT'); 
 		$kriteria = $this->db->query("SELECT m.imaster_kriteria, m.vNama_kriteria FROM master_kriteria m")->result_array();
 		foreach ($id_for as $val) { 
-			 $sql = "SELECT mp.imaster_produk, mp.jenis_produk, ht.level_stock_fg, ht.leadtime_shiptment, ht.kesediaan_bb FROM master_produk mp JOIN history_transaksi ht on ht.ckode_produk = mp.ckode_produk 
+			 $sql = "SELECT * FROM master_produk mp JOIN history_transaksi ht on ht.ckode_produk = mp.ckode_produk 
 					WHERE mp.imaster_produk ='".$val."' LIMIT 1";
 			 $datas = $this->db->query($sql)->row_array();
 			 $alt['imaster_produk']     =$datas['imaster_produk'];
@@ -126,19 +126,27 @@ class Alternatif extends CI_Controller {
 			  	/*$sql2 = "SELECT ms.fnilai FROM master_subkriteria ms WHERE ms.imaster_kriteria='".$k['imaster_kriteria']."' AND ms.imaster_subkriteria='".$datas[$gabung]."'";
 			  	$sen = $this->db->query($sql2); */
 
-			  	$sql2 = "SELECT ms.fnilai FROM master_subkriteria ms WHERE ms.imaster_kriteria='".$k['imaster_kriteria']."' AND ms.fnilai_range1>='".$datas[$gabung]."' AND ms.fnilai_range2<='".$datas[$gabung]."'"; 
+			  	/*$sql2 = "SELECT ms.fnilai FROM master_subkriteria ms WHERE ms.imaster_kriteria='".$k['imaster_kriteria']."' AND ms.fnilai_range1>='".$datas[$gabung]."' AND ms.fnilai_range2<='".$datas[$gabung]."'"; */
+			  	$sql2 = "SELECT ms.fnilai, ms.fnilai_range1, ms.fnilai_range2 FROM master_subkriteria ms WHERE ms.imaster_kriteria='".$k['imaster_kriteria']."'"; 
 			  	$sen = $this->db->query($sql2); 
 
 			  	$alt2['imaster_kriteria']=$k['imaster_kriteria'];
 			  	$alt2['ialternativ']=$ialternativ;
 			  	$alt2['ialternatif_periode']=$ialternatif_periode; 
 
-			  	if($sen->num_rows()>0){
-			  		$ds = $sen->row_array();
-			  		$alt2['fnilai_awal'] = $ds['fnilai'];
+			  	if($sen->num_rows()>0){ 
+			  		$res = $sen->result_array();
+			  		foreach ($res as $v) {
+			  			echo $v['fnilai_range1'];
+			  			if($datas[$gabung]>=$v['fnilai_range1'] && $datas[$gabung]<=$v['fnilai_range2']){
+			  				$alt2['fnilai_awal'] = $v['fnilai'];
+			  				break;
+			  			}
+			  		} 
 			  	}else{
 			  		$alt2['fnilai_awal'] = $datas[$gabung];
 			  	}
+			  	$alt2['fnilai_awal2'] = $datas[$gabung]; 
 			  	$this->db->insert('alternativ_detail',$alt2);
 
 			  }
@@ -187,7 +195,7 @@ class Alternatif extends CI_Controller {
 			$id_for = $this->input->post('insertALT'); 
 			$kriteria = $this->db->query("SELECT m.imaster_kriteria, m.vNama_kriteria FROM master_kriteria m")->result_array();
 			foreach ($id_for as $val) { 
-				 $sql = "SELECT mp.imaster_produk, mp.jenis_produk, ht.level_stock_fg, ht.leadtime_shiptment, ht.kesediaan_bb FROM master_produk mp JOIN history_transaksi ht on ht.ckode_produk = mp.ckode_produk 
+				 $sql = "SELECT * FROM master_produk mp JOIN history_transaksi ht on ht.ckode_produk = mp.ckode_produk 
 						WHERE mp.imaster_produk ='".$val."' LIMIT 1";
 				 $datas = $this->db->query($sql)->row_array();
 				 $alt['imaster_produk']     =$datas['imaster_produk'];

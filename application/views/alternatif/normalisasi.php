@@ -16,7 +16,52 @@
       <div> 
 <small>
   <i class="ace-icon fa fa-angle-double-right"></i>
-  Matrik
+  Matrik (NILAI AWAL)
+</small>
+<table class="table table-striped table-bordered table-hover" width="92%">
+  <thead>
+    <?php  
+      $col = $result_num+1;
+      $wid = 92 / $col;
+    ?> 
+    <tr>  
+      <th width="<?php echo $wid ?>%" class="center">Alternatif</th>
+      <?php 
+        foreach ($kriteria as $x) {
+          echo '<th width="<?php echo $wid ?>%" class="center">'.$x['vNama_kriteria'].'<br>['.$x['vAtribut'].']</th>';
+        }
+      ?>  
+    </tr>
+  </thead> 
+  <tbody>
+    <?php
+      $i = 1;
+      foreach ($result as $r) {
+        ?>
+          <tr> 
+            <td><?php echo '['.$r['ckode_produk'].'] '.$r['vnama_produk'].''; ?></td>   
+            <?php 
+              foreach ($kriteria as $x) {
+                $sqlNilai = "SELECT ad.fnilai_awal2 FROM alternativ_detail ad where ad.ialternativ = '".$r['ialternativ']."' and ad.imaster_kriteria ='".$x['imaster_kriteria']."'";
+                $nilai    = $this->db->query($sqlNilai)->row_array();
+                if(empty($nilai['fnilai_awal2'])){
+                  $nilai['fnilai_awal2'] = 0;
+                }
+                ?>
+                  <td class="center"><?php echo $nilai['fnilai_awal2']?></td> 
+                <?php
+              }
+            ?> 
+          </tr>
+        <?php
+      }
+     ?>  
+  </tbody>
+</table>
+
+<small>
+  <i class="ace-icon fa fa-angle-double-right"></i>
+  Matrik (NILAI PENYEDERHANAAN)
 </small>
 <table class="table table-striped table-bordered table-hover" width="92%">
   <thead>
@@ -58,6 +103,7 @@
      ?>  
   </tbody>
 </table>
+
 <div class="hr hr2 hr-double"></div>
 <i class="ace-icon fa fa-angle-double-right"></i>
   Normalisasi

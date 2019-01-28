@@ -50,7 +50,7 @@
                     } 
                     ?>
                     </div></td>  
-                    <td width="5%" class="center"><span onclick="hitungNormalisasi(<?php echo $r['ialternatif_periode'] ?>)"  class="btn-lg btn-<?php echo $default ?>">HItung</span></td>
+                    <td width="5%" class="center"><span onclick="hitungNormalisasi(<?php echo $r['ialternatif_periode'] ?>)"  class="btn-lg btn-<?php echo $default ?>">Hitung</span></td>
                     <td width="5%"><a href="<?php echo base_url().'Alternatif/edit/'.$r['ialternatif_periode']?>">Edit</a></td>
                     <td width="5%"><a href="<?php echo base_url().'Alternatif/view/'.$r['ialternatif_periode'].'?ikriteria_periode='.$r['ikriteria_periode'] ?>">View</a></td><td width="5%"><a href="<?php echo base_url().'Alternatif/hapus2/'.$r['ialternatif_periode']?>">Hapus</a></td> 
              			</tr>

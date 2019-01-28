@@ -20,7 +20,8 @@
               <th width="2%" class="center">No</th>  
               <th width="20%" class="center">Nama Kriteria</th> 
               <th width="40%" class="center">Sub Kriteria</th>
-              <th width="30%" class="center" colspan="2">Range</th>
+              <th width="30%" class="center">Range Awal</th>
+              <th width="30%" class="center">Range Akhir</th>
               <th width="10%" class="center">Nilai</th>  
               <th width="5%" class="center">Edit</th> 
               <th width="5%" class="center">Hapus</th>  
@@ -47,7 +48,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="6" "><a href="<?php echo base_url().'Subkriteria/Add'?>" class="btn-lg btn-primary"> Add </a></td>  
+              <td colspan="8"><a href="<?php echo base_url().'Subkriteria/Add'?>" class="btn-lg btn-primary"> Add </a></td>  
             </tr>
           </tfoot>
         </table>

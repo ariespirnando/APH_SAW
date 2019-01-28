@@ -13,12 +13,10 @@
 
 
 -- Dumping database structure for spk_penjadwalan
-DROP DATABASE IF EXISTS `spk_penjadwalan`;
 CREATE DATABASE IF NOT EXISTS `spk_penjadwalan` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `spk_penjadwalan`;
 
 -- Dumping structure for table spk_penjadwalan.alternatif_periode
-DROP TABLE IF EXISTS `alternatif_periode`;
 CREATE TABLE IF NOT EXISTS `alternatif_periode` (
   `ialternatif_periode` int(11) NOT NULL AUTO_INCREMENT,
   `ikriteria_periode` int(11) DEFAULT NULL,
@@ -31,12 +29,10 @@ CREATE TABLE IF NOT EXISTS `alternatif_periode` (
 -- Dumping data for table spk_penjadwalan.alternatif_periode: ~1 rows (approximately)
 /*!40000 ALTER TABLE `alternatif_periode` DISABLE KEYS */;
 INSERT INTO `alternatif_periode` (`ialternatif_periode`, `ikriteria_periode`, `bulan`, `yTahun`) VALUES
-	(1, 0, 1, '2010'),
-	(2, 1, 1, '2011');
+	(1, 0, 1, '2010');
 /*!40000 ALTER TABLE `alternatif_periode` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.alternativ
-DROP TABLE IF EXISTS `alternativ`;
 CREATE TABLE IF NOT EXISTS `alternativ` (
   `ialternativ` int(11) NOT NULL AUTO_INCREMENT,
   `ialternatif_periode` int(11) NOT NULL DEFAULT '0',
@@ -46,25 +42,29 @@ CREATE TABLE IF NOT EXISTS `alternativ` (
   `iset` int(11) DEFAULT NULL,
   PRIMARY KEY (`ialternativ`),
   KEY `ialternatif_periode` (`ialternatif_periode`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table spk_penjadwalan.alternativ: ~8 rows (approximately)
+-- Dumping data for table spk_penjadwalan.alternativ: ~10 rows (approximately)
 /*!40000 ALTER TABLE `alternativ` DISABLE KEYS */;
 INSERT INTO `alternativ` (`ialternativ`, `ialternatif_periode`, `imaster_produk`, `fnilai_akhir`, `irangking`, `iset`) VALUES
-	(1, 1, 1, 0, 0, 0),
-	(2, 1, 2, 0, 0, 0),
-	(3, 1, 3, 0, 0, 0),
-	(4, 1, 5, 0, 0, 0),
-	(5, 1, 6, 0, 0, 0),
-	(9, 2, 1, 43.18, 4, 0),
-	(10, 2, 2, 63.39, 2, 0),
-	(11, 2, 3, 77.535, 1, 0),
-	(12, 2, 5, 45.589, 3, 0),
-	(13, 1, 11, 0, 0, 0);
+	(110, 1, 12, 0, 0, 0),
+	(111, 1, 41, 0, 0, 0),
+	(112, 1, 43, 0, 0, 0),
+	(113, 1, 51, 0, 0, 0),
+	(114, 1, 52, 0, 0, 0),
+	(115, 1, 60, 0, 0, 0),
+	(116, 1, 61, 0, 0, 0),
+	(117, 1, 63, 0, 0, 0),
+	(118, 1, 73, 0, 0, 0),
+	(119, 1, 101, 0, 0, 0),
+	(120, 1, 176, 0, 0, 0),
+	(121, 1, 203, 0, 0, 0),
+	(122, 1, 226, 0, 0, 0),
+	(123, 1, 243, 0, 0, 0),
+	(124, 1, 246, 0, 0, 0);
 /*!40000 ALTER TABLE `alternativ` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.alternativ_detail
-DROP TABLE IF EXISTS `alternativ_detail`;
 CREATE TABLE IF NOT EXISTS `alternativ_detail` (
   `ialternativ_detail` int(11) NOT NULL AUTO_INCREMENT,
   `ialternativ` int(11) DEFAULT NULL,
@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `alternativ_detail` (
   `imaster_kriteria` int(11) DEFAULT NULL,
   `ikriteria_nilai` int(11) DEFAULT NULL,
   `fnilai_awal` float DEFAULT NULL,
+  `fnilai_awal2` float DEFAULT NULL,
   `fnilai_normal` float DEFAULT NULL,
   `fnilai_bobot` float DEFAULT NULL,
   PRIMARY KEY (`ialternativ_detail`),
@@ -79,321 +80,104 @@ CREATE TABLE IF NOT EXISTS `alternativ_detail` (
   KEY `imaster_kriteria` (`imaster_kriteria`),
   KEY `ikriteria_nilai` (`ikriteria_nilai`),
   KEY `ialternatif_periode` (`ialternatif_periode`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=453 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table spk_penjadwalan.alternativ_detail: ~32 rows (approximately)
+-- Dumping data for table spk_penjadwalan.alternativ_detail: ~40 rows (approximately)
 /*!40000 ALTER TABLE `alternativ_detail` DISABLE KEYS */;
-INSERT INTO `alternativ_detail` (`ialternativ_detail`, `ialternativ`, `ialternatif_periode`, `imaster_kriteria`, `ikriteria_nilai`, `fnilai_awal`, `fnilai_normal`, `fnilai_bobot`) VALUES
-	(1, 1, 1, 1, 0, 10, 0, 0),
-	(2, 1, 1, 2, 0, 16, 0, 0),
-	(3, 1, 1, 3, 0, 46, 0, 0),
-	(4, 1, 1, 4, 0, 30, 0, 0),
-	(5, 2, 1, 1, 0, 83, 0, 0),
-	(6, 2, 1, 2, 0, 88, 0, 0),
-	(7, 2, 1, 3, 0, 50, 0, 0),
-	(8, 2, 1, 4, 0, 10, 0, 0),
-	(9, 3, 1, 1, 0, 92, 0, 0),
-	(10, 3, 1, 2, 0, 25, 0, 0),
-	(11, 3, 1, 3, 0, 20, 0, 0),
-	(12, 3, 1, 4, 0, 20, 0, 0),
-	(13, 4, 1, 1, 0, 23, 0, 0),
-	(14, 4, 1, 2, 0, 39, 0, 0),
-	(15, 4, 1, 3, 0, 42, 0, 0),
-	(16, 4, 1, 4, 0, 20, 0, 0),
-	(17, 5, 1, 1, 0, 91, 0, 0),
-	(18, 5, 1, 2, 0, 67, 0, 0),
-	(19, 5, 1, 3, 0, 64, 0, 0),
-	(20, 5, 1, 4, 0, 10, 0, 0),
-	(33, 9, 2, 1, 29, 10, 0.109, 2.769),
-	(34, 9, 2, 2, 30, 16, 0.182, 3.713),
-	(35, 9, 2, 3, 31, 46, 0.435, 13.398),
-	(36, 9, 2, 4, 32, 30, 1, 23.3),
-	(37, 10, 2, 1, 29, 83, 0.902, 22.911),
-	(38, 10, 2, 2, 30, 88, 1, 20.4),
-	(39, 10, 2, 3, 31, 50, 0.4, 12.32),
-	(40, 10, 2, 4, 32, 10, 0.333, 7.759),
-	(41, 11, 2, 1, 29, 92, 1, 25.4),
-	(42, 11, 2, 2, 30, 25, 0.284, 5.794),
-	(43, 11, 2, 3, 31, 20, 1, 30.8),
-	(44, 11, 2, 4, 32, 20, 0.667, 15.541),
-	(45, 12, 2, 1, 29, 23, 0.25, 6.35),
-	(46, 12, 2, 2, 30, 39, 0.443, 9.037),
-	(47, 12, 2, 3, 31, 42, 0.476, 14.661),
-	(48, 12, 2, 4, 32, 20, 0.667, 15.541),
-	(49, 13, 1, 1, 0, 91, 0, 0),
-	(50, 13, 1, 2, 0, 85, 0, 0),
-	(51, 13, 1, 3, 0, 30, 0, 0),
-	(52, 13, 1, 4, 0, 10, 0, 0);
+INSERT INTO `alternativ_detail` (`ialternativ_detail`, `ialternativ`, `ialternatif_periode`, `imaster_kriteria`, `ikriteria_nilai`, `fnilai_awal`, `fnilai_awal2`, `fnilai_normal`, `fnilai_bobot`) VALUES
+	(413, 110, 1, 1, 0, 3, 3, 0, 0),
+	(414, 110, 1, 2, 0, 1, 34, 0, 0),
+	(415, 110, 1, 3, 0, 2, 1, 0, 0),
+	(416, 110, 1, 4, 0, 2, 2, 0, 0),
+	(417, 111, 1, 1, 0, 2, 2, 0, 0),
+	(418, 111, 1, 2, 0, 1, 55, 0, 0),
+	(419, 111, 1, 3, 0, 1, 1.9, 0, 0),
+	(420, 111, 1, 4, 0, 1, 1, 0, 0),
+	(421, 112, 1, 1, 0, 3, 3, 0, 0),
+	(422, 112, 1, 2, 0, 3, 72, 0, 0),
+	(423, 112, 1, 3, 0, 1, 1.5, 0, 0),
+	(424, 112, 1, 4, 0, 2, 2, 0, 0),
+	(425, 113, 1, 1, 0, 2, 2, 0, 0),
+	(426, 113, 1, 2, 0, 4, 92, 0, 0),
+	(427, 113, 1, 3, 0, 1, 1.5, 0, 0),
+	(428, 113, 1, 4, 0, 1, 1, 0, 0),
+	(429, 114, 1, 1, 0, 2, 2, 0, 0),
+	(430, 114, 1, 2, 0, 4, 83, 0, 0),
+	(431, 114, 1, 3, 0, 1, 1.5, 0, 0),
+	(432, 114, 1, 4, 0, 2, 2, 0, 0),
+	(433, 115, 1, 1, 0, 2, 2, 0, 0),
+	(434, 115, 1, 2, 0, 1, 40, 0, 0),
+	(435, 115, 1, 3, 0, 1, 1.5, 0, 0),
+	(436, 115, 1, 4, 0, 2, 2, 0, 0),
+	(437, 116, 1, 1, 0, 2, 2, 0, 0),
+	(438, 116, 1, 2, 0, 2, 61, 0, 0),
+	(439, 116, 1, 3, 0, 1, 1.5, 0, 0),
+	(440, 116, 1, 4, 0, 1, 1, 0, 0),
+	(441, 117, 1, 1, 0, 2, 2, 0, 0),
+	(442, 117, 1, 2, 0, 1, 20, 0, 0),
+	(443, 117, 1, 3, 0, 1, 1.5, 0, 0),
+	(444, 117, 1, 4, 0, 2, 2, 0, 0),
+	(445, 118, 1, 1, 0, 2, 2, 0, 0),
+	(446, 118, 1, 2, 0, 1, 17, 0, 0),
+	(447, 118, 1, 3, 0, 1, 1.5, 0, 0),
+	(448, 118, 1, 4, 0, 1, 1, 0, 0),
+	(449, 119, 1, 1, 0, 3, 3, 0, 0),
+	(450, 119, 1, 2, 0, 1, 42, 0, 0),
+	(451, 119, 1, 3, 0, 1, 1.9, 0, 0),
+	(452, 119, 1, 4, 0, 1, 1, 0, 0),
+	(453, 120, 1, 1, 0, 3, 3, 0, 0),
+	(454, 120, 1, 2, 0, 1, 55, 0, 0),
+	(455, 120, 1, 3, 0, 2, 0.7, 0, 0),
+	(456, 120, 1, 4, 0, 2, 2, 0, 0),
+	(457, 121, 1, 1, 0, 3, 3, 0, 0),
+	(458, 121, 1, 2, 0, 3, 79, 0, 0),
+	(459, 121, 1, 3, 0, 1, 1.9, 0, 0),
+	(460, 121, 1, 4, 0, 2, 2, 0, 0),
+	(461, 122, 1, 1, 0, 2, 2, 0, 0),
+	(462, 122, 1, 2, 0, 4, 90, 0, 0),
+	(463, 122, 1, 3, 0, 1, 1.9, 0, 0),
+	(464, 122, 1, 4, 0, 2, 2, 0, 0),
+	(465, 123, 1, 1, 0, 3, 3, 0, 0),
+	(466, 123, 1, 2, 0, 1, 41, 0, 0),
+	(467, 123, 1, 3, 0, 1, 1.9, 0, 0),
+	(468, 123, 1, 4, 0, 2, 2, 0, 0),
+	(469, 124, 1, 1, 0, 3, 3, 0, 0),
+	(470, 124, 1, 2, 0, 4, 90, 0, 0),
+	(471, 124, 1, 3, 0, 1, 1.9, 0, 0),
+	(472, 124, 1, 4, 0, 2, 2, 0, 0);
 /*!40000 ALTER TABLE `alternativ_detail` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.history_transaksi
-DROP TABLE IF EXISTS `history_transaksi`;
 CREATE TABLE IF NOT EXISTS `history_transaksi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckode_produk` varchar(255) DEFAULT NULL,
-  `level_stock_fg` float DEFAULT NULL,
-  `leadtime_shiptment` float DEFAULT '0',
   `kesediaan_bb` float DEFAULT '0',
+  `leadtime_shipment` float DEFAULT '0',
+  `level_stock_fg` float DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table spk_penjadwalan.history_transaksi: ~250 rows (approximately)
+-- Dumping data for table spk_penjadwalan.history_transaksi: ~15 rows (approximately)
 /*!40000 ALTER TABLE `history_transaksi` DISABLE KEYS */;
-INSERT INTO `history_transaksi` (`id`, `ckode_produk`, `level_stock_fg`, `leadtime_shiptment`, `kesediaan_bb`) VALUES
-	(1, '105181', 46, 16, 10),
-	(2, '105242', 50, 88, 83),
-	(3, '105587', 20, 25, 92),
-	(4, '105600', 32, 15, 79),
-	(5, '105686', 42, 39, 23),
-	(6, '105792', 64, 67, 91),
-	(7, '101343', 18, 93, 28),
-	(8, '100643', 54, 52, 76),
-	(9, '100711', 86, 94, 8),
-	(10, '100018', 28, 38, 94),
-	(11, '100025', 30, 85, 91),
-	(12, '100032', 8, 34, 23),
-	(13, '100049', 93, 56, 49),
-	(14, '100063', 37, 62, 26),
-	(15, '100070', 99, 72, 18),
-	(16, '100087', 24, 13, 60),
-	(17, '100094', 57, 46, 8),
-	(18, '100117', 95, 52, 8),
-	(19, '100124', 1, 34, 82),
-	(20, '100131', 13, 62, 12),
-	(21, '100148', 3, 80, 27),
-	(22, '100155', 39, 46, 66),
-	(23, '100162', 97, 83, 47),
-	(24, '100179', 29, 60, 89),
-	(25, '100186', 13, 69, 90),
-	(26, '100193', 90, 87, 90),
-	(27, '100209', 76, 16, 38),
-	(28, '100216', 73, 75, 67),
-	(29, '100223', 97, 28, 92),
-	(30, '100230', 44, 92, 17),
-	(31, '100247', 66, 9, 97),
-	(32, '100254', 66, 2, 40),
-	(33, '100261', 45, 69, 49),
-	(34, '100278', 45, 3, 99),
-	(35, '100285', 10, 61, 8),
-	(36, '100292', 70, 55, 58),
-	(37, '100308', 96, 6, 51),
-	(38, '100315', 23, 43, 49),
-	(39, '100346', 28, 2, 64),
-	(40, '100377', 93, 28, 92),
-	(41, '100384', 70, 36, 29),
-	(42, '100391', 66, 43, 84),
-	(43, '100407', 50, 72, 41),
-	(44, '100414', 89, 53, 23),
-	(45, '100421', 40, 19, 27),
-	(46, '100438', 89, 17, 19),
-	(47, '100445', 14, 11, 1),
-	(48, '100483', 71, 95, 57),
-	(49, '100490', 71, 29, 88),
-	(50, '100506', 40, 92, 42),
-	(51, '100513', 68, 92, 22),
-	(52, '100520', 13, 83, 3),
-	(53, '100537', 9, 84, 58),
-	(54, '100544', 20, 76, 67),
-	(55, '100605', 58, 88, 97),
-	(56, '100612', 25, 67, 74),
-	(57, '100629', 27, 46, 62),
-	(58, '100636', 22, 97, 45),
-	(59, '100650', 9, 90, 94),
-	(60, '100674', 81, 40, 26),
-	(61, '100681', 55, 54, 31),
-	(62, '100698', 8, 19, 76),
-	(63, '100704', 23, 20, 47),
-	(64, '100728', 17, 61, 96),
-	(65, '100735', 11, 17, 17),
-	(66, '100742', 14, 1, 42),
-	(67, '100759', 99, 6, 11),
-	(68, '100766', 28, 83, 97),
-	(69, '100773', 24, 14, 12),
-	(70, '100780', 45, 49, 26),
-	(71, '100810', 31, 16, 54),
-	(72, '100827', 46, 14, 40),
-	(73, '100834', 39, 97, 50),
-	(74, '100841', 96, 89, 82),
-	(75, '100858', 27, 19, 3),
-	(76, '100865', 30, 9, 84),
-	(77, '100872', 8, 36, 78),
-	(78, '100889', 43, 55, 12),
-	(79, '100896', 99, 19, 60),
-	(80, '101008', 42, 69, 34),
-	(81, '101145', 4, 43, 54),
-	(82, '101176', 33, 24, 69),
-	(83, '101183', 56, 67, 29),
-	(84, '101312', 39, 38, 13),
-	(85, '101497', 34, 72, 93),
-	(86, '101534', 39, 11, 39),
-	(87, '101541', 35, 16, 34),
-	(88, '101596', 66, 69, 98),
-	(89, '101640', 99, 15, 92),
-	(90, '101695', 36, 28, 3),
-	(91, '101701', 55, 47, 11),
-	(92, '101718', 19, 30, 73),
-	(93, '101725', 72, 8, 66),
-	(94, '101749', 36, 96, 72),
-	(95, '101756', 69, 10, 32),
-	(96, '101763', 23, 92, 23),
-	(97, '101688', 52, 78, 72),
-	(98, '101947', 26, 14, 10),
-	(99, '101954', 27, 73, 70),
-	(100, '101961', 38, 92, 40),
-	(101, '101978', 34, 29, 82),
-	(102, '101985', 22, 77, 88),
-	(103, '101992', 88, 37, 25),
-	(104, '102005', 8, 44, 60),
-	(105, '102012', 69, 81, 27),
-	(106, '102036', 12, 70, 28),
-	(107, '102081', 14, 34, 27),
-	(108, '102098', 26, 60, 88),
-	(109, '102104', 46, 23, 39),
-	(110, '102111', 31, 24, 67),
-	(111, '102128', 90, 81, 63),
-	(112, '102135', 16, 56, 77),
-	(113, '102166', 9, 85, 80),
-	(114, '102265', 10, 42, 66),
-	(115, '102302', 16, 82, 84),
-	(116, '102340', 61, 56, 52),
-	(117, '102395', 21, 82, 7),
-	(118, '102401', 76, 16, 35),
-	(119, '102425', 12, 10, 26),
-	(120, '102432', 4, 31, 49),
-	(121, '102463', 42, 57, 58),
-	(122, '102470', 1, 45, 69),
-	(123, '102487', 41, 53, 45),
-	(124, '102494', 39, 89, 89),
-	(125, '102500', 60, 95, 96),
-	(126, '102586', 67, 11, 93),
-	(127, '102661', 94, 59, 11),
-	(128, '102678', 40, 62, 32),
-	(129, '102685', 72, 74, 46),
-	(130, '102524', 84, 51, 63),
-	(131, '102593', 70, 18, 25),
-	(132, '102753', 97, 29, 15),
-	(133, '102784', 7, 22, 52),
-	(134, '102869', 1, 61, 35),
-	(135, '102876', 54, 31, 31),
-	(136, '102883', 78, 81, 80),
-	(137, '102999', 13, 3, 98),
-	(138, '103057', 66, 75, 53),
-	(139, '103064', 76, 83, 20),
-	(140, '103071', 48, 15, 24),
-	(141, '103088', 46, 81, 14),
-	(142, '103095', 76, 25, 96),
-	(143, '103118', 21, 82, 6),
-	(144, '103125', 62, 48, 69),
-	(145, '103149', 96, 31, 6),
-	(146, '103156', 33, 73, 52),
-	(147, '103170', 89, 28, 71),
-	(148, '103248', 92, 75, 86),
-	(149, '103309', 95, 68, 65),
-	(150, '103316', 70, 89, 30),
-	(151, '103323', 88, 67, 15),
-	(152, '103392', 17, 84, 48),
-	(153, '103408', 38, 91, 60),
-	(154, '103415', 55, 28, 55),
-	(155, '103439', 14, 5, 54),
-	(156, '103545', 85, 44, 55),
-	(157, '103552', 13, 56, 3),
-	(158, '103569', 54, 50, 55),
-	(159, '103613', 10, 73, 76),
-	(160, '103620', 16, 60, 26),
-	(161, '103705', 8, 83, 67),
-	(162, '103743', 2, 70, 11),
-	(163, '103750', 45, 90, 70),
-	(164, '103767', 31, 68, 25),
-	(165, '103774', 50, 83, 85),
-	(166, '103781', 91, 45, 40),
-	(167, '103811', 68, 32, 4),
-	(168, '103842', 95, 91, 44),
-	(169, '103859', 19, 98, 49),
-	(170, '103903', 51, 93, 43),
-	(171, '103910', 24, 33, 51),
-	(172, '103934', 27, 95, 5),
-	(173, '103965', 43, 93, 44),
-	(174, '103972', 5, 80, 62),
-	(175, '103989', 56, 80, 55),
-	(176, '103996', 78, 55, 96),
-	(177, '104009', 44, 4, 99),
-	(178, '104016', 13, 17, 30),
-	(179, '104023', 89, 30, 93),
-	(180, '104030', 63, 31, 33),
-	(181, '104047', 51, 9, 56),
-	(182, '104054', 66, 97, 15),
-	(183, '104061', 32, 98, 31),
-	(184, '104078', 82, 35, 94),
-	(185, '104085', 51, 26, 3),
-	(186, '104092', 82, 29, 44),
-	(187, '104108', 71, 39, 89),
-	(188, '104115', 24, 26, 67),
-	(189, '104122', 92, 88, 70),
-	(190, '104139', 55, 22, 95),
-	(191, '104146', 3, 79, 84),
-	(192, '104153', 61, 28, 24),
-	(193, '104160', 78, 37, 63),
-	(194, '104177', 58, 50, 43),
-	(195, '104184', 95, 67, 57),
-	(196, '104191', 51, 38, 28),
-	(197, '104207', 37, 69, 27),
-	(198, '104214', 56, 32, 9),
-	(199, '104221', 97, 66, 10),
-	(200, '104238', 38, 70, 63),
-	(201, '104245', 21, 2, 69),
-	(202, '104252', 44, 4, 5),
-	(203, '104269', 96, 79, 75),
-	(204, '104276', 91, 61, 60),
-	(205, '104283', 19, 69, 83),
-	(206, '104290', 61, 1, 89),
-	(207, '104306', 74, 49, 88),
-	(208, '104313', 28, 54, 92),
-	(209, '104320', 62, 5, 80),
-	(210, '104337', 84, 61, 22),
-	(211, '104344', 98, 75, 49),
-	(212, '104351', 90, 50, 92),
-	(213, '104368', 62, 29, 63),
-	(214, '104375', 89, 83, 12),
-	(215, '104382', 36, 36, 13),
-	(216, '104399', 42, 50, 96),
-	(217, '104405', 17, 79, 19),
-	(218, '104412', 49, 65, 80),
-	(219, '104429', 45, 8, 16),
-	(220, '104436', 9, 23, 29),
-	(221, '104443', 31, 24, 47),
-	(222, '104450', 60, 41, 91),
-	(223, '104467', 18, 55, 59),
-	(224, '104474', 92, 7, 86),
-	(225, '104481', 94, 86, 83),
-	(226, '104498', 30, 90, 11),
-	(227, '104504', 13, 55, 74),
-	(228, '104511', 42, 93, 44),
-	(229, '104528', 57, 81, 32),
-	(230, '104535', 30, 29, 78),
-	(231, '104542', 58, 8, 77),
-	(232, '104559', 21, 13, 25),
-	(233, '104566', 40, 19, 12),
-	(234, '104573', 72, 30, 13),
-	(235, '104580', 31, 46, 64),
-	(236, '104597', 24, 1, 12),
-	(237, '104603', 48, 47, 16),
-	(238, '104610', 33, 48, 57),
-	(239, '104627', 36, 66, 69),
-	(240, '104634', 24, 91, 80),
-	(241, '104641', 21, 8, 24),
-	(242, '104658', 42, 34, 8),
-	(243, '104665', 16, 41, 49),
-	(244, '104672', 32, 34, 75),
-	(245, '104689', 60, 16, 30),
-	(246, '104696', 16, 90, 9),
-	(247, '104702', 36, 42, 84),
-	(248, '104719', 11, 93, 19),
-	(249, '104726', 11, 65, 58),
-	(250, '104733', 40, 85, 16);
+INSERT INTO `history_transaksi` (`id`, `ckode_produk`, `kesediaan_bb`, `leadtime_shipment`, `level_stock_fg`) VALUES
+	(1, '100032', 3, 34, 1),
+	(2, '100407', 3, 72, 1.5),
+	(3, '100513', 2, 92, 1.5),
+	(4, '100520', 2, 83, 1.5),
+	(5, '104696', 3, 90, 1.9),
+	(6, '101978', 3, 42, 1.9),
+	(7, '104665', 3, 41, 1.9),
+	(8, '104498', 2, 90, 1.9),
+	(9, '100384', 2, 55, 1.9),
+	(10, '104269', 3, 79, 1.9),
+	(11, '103996', 3, 55, 0.7),
+	(12, '100674', 2, 40, 1.5),
+	(13, '100704', 2, 20, 1.5),
+	(14, '100681', 2, 61, 1.5),
+	(15, '100834', 2, 17, 1.5);
 /*!40000 ALTER TABLE `history_transaksi` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.kriteria_nilai
-DROP TABLE IF EXISTS `kriteria_nilai`;
 CREATE TABLE IF NOT EXISTS `kriteria_nilai` (
   `ikriteria_nilai` int(11) NOT NULL AUTO_INCREMENT,
   `imaster_kriteria` int(11) NOT NULL,
@@ -406,19 +190,18 @@ CREATE TABLE IF NOT EXISTS `kriteria_nilai` (
   PRIMARY KEY (`ikriteria_nilai`),
   KEY `imaster_kriteria_periode` (`ikriteria_periode`),
   KEY `imaster_kriteria` (`imaster_kriteria`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table spk_penjadwalan.kriteria_nilai: ~4 rows (approximately)
 /*!40000 ALTER TABLE `kriteria_nilai` DISABLE KEYS */;
 INSERT INTO `kriteria_nilai` (`ikriteria_nilai`, `imaster_kriteria`, `ikriteria_periode`, `fawal`, `fjumlah`, `fvaktor`, `ftmax`, `fbobot`) VALUES
-	(29, 1, 1, 5, 1.017, 0.254, 1.27, 25.4),
-	(30, 2, 1, 6, 0.817, 0.204, 1.224, 20.4),
-	(31, 3, 1, 2, 1.233, 0.308, 0.616, 30.8),
-	(32, 4, 1, 2.5, 0.933, 0.233, 0.583, 23.3);
+	(41, 1, 1, 10, 0.384, 0.096, 0.96, 9.6),
+	(42, 2, 1, 6.5, 0.644, 0.161, 1.047, 16.1),
+	(43, 3, 1, 3.833, 1.109, 0.277, 1.062, 27.7),
+	(44, 4, 1, 2.083, 1.864, 0.466, 0.971, 46.6);
 /*!40000 ALTER TABLE `kriteria_nilai` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.kriteria_nilai_detail
-DROP TABLE IF EXISTS `kriteria_nilai_detail`;
 CREATE TABLE IF NOT EXISTS `kriteria_nilai_detail` (
   `ikriteria_nilai_detail` int(11) NOT NULL AUTO_INCREMENT,
   `ikriteria_periode` int(11) NOT NULL DEFAULT '0',
@@ -428,31 +211,30 @@ CREATE TABLE IF NOT EXISTS `kriteria_nilai_detail` (
   `fnilai_normalisasi` float DEFAULT NULL,
   PRIMARY KEY (`ikriteria_nilai_detail`),
   KEY `imaster_kriteria_periode` (`ikriteria_periode`)
-) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table spk_penjadwalan.kriteria_nilai_detail: ~16 rows (approximately)
 /*!40000 ALTER TABLE `kriteria_nilai_detail` DISABLE KEYS */;
 INSERT INTO `kriteria_nilai_detail` (`ikriteria_nilai_detail`, `ikriteria_periode`, `imaster_kriteria_x`, `imaster_kriteria_y`, `fnilai_awal`, `fnilai_normalisasi`) VALUES
-	(113, 1, 1, 1, 1, 0.2),
-	(114, 1, 1, 2, 1, 0.167),
-	(115, 1, 1, 3, 0.5, 0.25),
-	(116, 1, 1, 4, 1, 0.4),
-	(117, 1, 2, 1, 1, 0.2),
-	(118, 1, 2, 2, 1, 0.167),
-	(119, 1, 2, 3, 0.5, 0.25),
-	(120, 1, 2, 4, 0.5, 0.2),
-	(121, 1, 3, 1, 2, 0.4),
-	(122, 1, 3, 2, 2, 0.333),
-	(123, 1, 3, 3, 1, 0.5),
-	(124, 1, 3, 4, 0, 0),
-	(125, 1, 4, 1, 1, 0.2),
-	(126, 1, 4, 2, 2, 0.333),
-	(127, 1, 4, 3, 0, 0),
-	(128, 1, 4, 4, 1, 0.4);
+	(161, 1, 1, 1, 1, 0.1),
+	(162, 1, 1, 2, 0.5, 0.077),
+	(163, 1, 1, 3, 0.333, 0.087),
+	(164, 1, 1, 4, 0.25, 0.12),
+	(165, 1, 2, 1, 2, 0.2),
+	(166, 1, 2, 2, 1, 0.154),
+	(167, 1, 2, 3, 0.5, 0.13),
+	(168, 1, 2, 4, 0.333, 0.16),
+	(169, 1, 3, 1, 3, 0.3),
+	(170, 1, 3, 2, 2, 0.308),
+	(171, 1, 3, 3, 1, 0.261),
+	(172, 1, 3, 4, 0.5, 0.24),
+	(173, 1, 4, 1, 4, 0.4),
+	(174, 1, 4, 2, 3, 0.462),
+	(175, 1, 4, 3, 2, 0.522),
+	(176, 1, 4, 4, 1, 0.48);
 /*!40000 ALTER TABLE `kriteria_nilai_detail` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.kriteria_periode
-DROP TABLE IF EXISTS `kriteria_periode`;
 CREATE TABLE IF NOT EXISTS `kriteria_periode` (
   `ikriteria_periode` int(11) NOT NULL AUTO_INCREMENT,
   `bulan` int(11) DEFAULT NULL,
@@ -467,7 +249,6 @@ INSERT INTO `kriteria_periode` (`ikriteria_periode`, `bulan`, `yTahun`) VALUES
 /*!40000 ALTER TABLE `kriteria_periode` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.master_kriteria
-DROP TABLE IF EXISTS `master_kriteria`;
 CREATE TABLE IF NOT EXISTS `master_kriteria` (
   `imaster_kriteria` int(11) NOT NULL AUTO_INCREMENT,
   `cKode` char(50) DEFAULT NULL,
@@ -481,13 +262,12 @@ CREATE TABLE IF NOT EXISTS `master_kriteria` (
 /*!40000 ALTER TABLE `master_kriteria` DISABLE KEYS */;
 INSERT INTO `master_kriteria` (`imaster_kriteria`, `cKode`, `vNama_kriteria`, `vAtribut`, `fawal`) VALUES
 	(1, 'C1', 'Kesediaan BB', 'Benefit', NULL),
-	(2, 'C2', 'Leadtime Shiptment', 'Benefit', NULL),
+	(2, 'C2', 'Leadtime Shipment', 'Benefit', NULL),
 	(3, 'C3', 'Level Stock FG', 'Cost', NULL),
 	(4, 'C4', 'Jenis Produk', 'Benefit', NULL);
 /*!40000 ALTER TABLE `master_kriteria` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.master_produk
-DROP TABLE IF EXISTS `master_produk`;
 CREATE TABLE IF NOT EXISTS `master_produk` (
   `imaster_produk` int(11) NOT NULL AUTO_INCREMENT,
   `ckode_produk` varchar(255) DEFAULT NULL,
@@ -753,7 +533,6 @@ INSERT INTO `master_produk` (`imaster_produk`, `ckode_produk`, `vnama_produk`, `
 /*!40000 ALTER TABLE `master_produk` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.master_subkriteria
-DROP TABLE IF EXISTS `master_subkriteria`;
 CREATE TABLE IF NOT EXISTS `master_subkriteria` (
   `imaster_subkriteria` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `imaster_kriteria` int(11) DEFAULT NULL,
@@ -763,18 +542,27 @@ CREATE TABLE IF NOT EXISTS `master_subkriteria` (
   `fnilai` float DEFAULT NULL,
   PRIMARY KEY (`imaster_subkriteria`),
   KEY `imaster_kriteria` (`imaster_kriteria`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
--- Dumping data for table spk_penjadwalan.master_subkriteria: ~3 rows (approximately)
+-- Dumping data for table spk_penjadwalan.master_subkriteria: ~13 rows (approximately)
 /*!40000 ALTER TABLE `master_subkriteria` DISABLE KEYS */;
 INSERT INTO `master_subkriteria` (`imaster_subkriteria`, `imaster_kriteria`, `vnama`, `fnilai_range1`, `fnilai_range2`, `fnilai`) VALUES
-	(1, 4, 'Local', 1, 1, 10),
-	(2, 4, 'Non Local', 2, 2, 20),
-	(3, 4, 'Export', 3, 3, 30);
+	(1, 4, 'Local', 1, 1, 1),
+	(2, 4, 'Non Local', 2, 2, 2),
+	(3, 4, 'Export', 3, 3, 3),
+	(4, 3, '< 0,5 bulan ', 0, 0.49, 3),
+	(5, 3, '0,5 bulan -  1 bulan', 0.5, 1, 2),
+	(6, 1, 'Print PO', 2, 2, 2),
+	(7, 1, 'Ready', 3, 3, 3),
+	(8, 1, 'Open PO', 1, 1, 1),
+	(9, 2, '90 hari – 81 hari', 81, 100, 4),
+	(10, 2, '80 hari – 71 hari', 71, 80, 3),
+	(11, 2, '70 hari – 60 hari', 60, 70, 2),
+	(12, 2, '< 59 hari', -99999, 59, 1),
+	(13, 3, '>1 Bulan', 1.01, 9999, 1);
 /*!40000 ALTER TABLE `master_subkriteria` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.random_index
-DROP TABLE IF EXISTS `random_index`;
 CREATE TABLE IF NOT EXISTS `random_index` (
   `index` int(11) DEFAULT NULL,
   `nilai` float DEFAULT NULL
@@ -799,7 +587,6 @@ INSERT INTO `random_index` (`index`, `nilai`) VALUES
 /*!40000 ALTER TABLE `random_index` ENABLE KEYS */;
 
 -- Dumping structure for table spk_penjadwalan.tb_user
-DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE IF NOT EXISTS `tb_user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `nama_user` varchar(255) DEFAULT NULL,
