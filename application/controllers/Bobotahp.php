@@ -208,7 +208,8 @@ class Bobotahp extends CI_Controller {
 			 $imaster_kriteria = $x;  
 			 $krit['fjumlah'] = $jum;
 			 $krit['fvaktor'] = number_format(($jum/$jumlahKriteria),3);
-			 $krit['fbobot']  = $krit['fvaktor'] * 100;
+			 //$krit['fbobot']  = $krit['fvaktor'] * 100;
+			 $krit['fbobot']  = $krit['fvaktor'];  
 			 $this->db->where('imaster_kriteria',$imaster_kriteria);
 			 $this->db->where('ikriteria_periode',$ikriteria_periode);
 			 $this->db->update('kriteria_nilai',$krit); 
